@@ -1,19 +1,18 @@
 package epam.training.luka_khutsiashvili.api.tests;
 
+import epam.training.luka_khutsiashvili.api.utils.Endpoints;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
 
 public class ResponseHeaderTest {
 
-  private static final String BASE_URL = "https://jsonplaceholder.typicode.com/users";
-
   @Test
   public void verifyContentTypeHeaderExists() {
-    Response response = RestAssured.get(BASE_URL);
+    Response response = RestAssured.get(Endpoints.USERS);
 
     assertTrue(response.getHeaders().hasHeaderWithName("Content-Type"),
         "Response does not contain 'Content-Type' header.");
@@ -21,7 +20,7 @@ public class ResponseHeaderTest {
 
   @Test
   public void verifyContentTypeHeaderValue() {
-    Response response = RestAssured.get(BASE_URL);
+    Response response = RestAssured.get(Endpoints.USERS);
 
     String expectedContentType = "application/json; charset=utf-8";
     String actualContentType = response.getHeader("Content-Type");

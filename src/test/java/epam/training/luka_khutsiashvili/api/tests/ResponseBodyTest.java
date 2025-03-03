@@ -1,25 +1,23 @@
 package epam.training.luka_khutsiashvili.api.tests;
 
+import epam.training.luka_khutsiashvili.api.utils.Endpoints;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-
 public class ResponseBodyTest {
-
-  private static final String BASE_URL = "https://jsonplaceholder.typicode.com/users";
 
   @Test
   public void verifyResponseBodyContainsTenUsers() {
-    Response response = RestAssured.get(BASE_URL);
-
+    Response response = RestAssured.get(Endpoints.USERS);
     List<?> users = response.jsonPath().getList("$");
 
-    assertNotNull(users, "Response body is null.");
-    assertEquals(users.size(), 10, "Expected 10 users in response, but found: " + users.size());
+    SoftAssert softAssert = new SoftAssert();
+    softAssert.assertNotNull(users, "Response body is null.");
+    softAssert.assertEquals(users.size(), 10, "Expected 10 users in response, but found: " + users.size());
+    softAssert.assertAll();
   }
 }
