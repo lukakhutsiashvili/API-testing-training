@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="API Testing Suite" parallel="methods" thread-count="3">
+  <test name="API Tests">
+    <classes>
+      <class name="epam.training.luka_khutsiashvili.api.tests.StatusCodeTest"/>
+      <class name="epam.training.luka_khutsiashvili.api.tests.ResponseHeaderTest"/>
+      <class name="epam.training.luka_khutsiashvili.api.tests.ResponseBodyTest"/>
+      <class name="epam.training.luka_khutsiashvili.api.tests.CrudOperationsTest"/>
+    </classes>
+  </test>
+</suite>
